@@ -1,0 +1,27 @@
+#Build docker images:
+cd department-service
+docker build -t piomin/department:1.1 .
+
+cd ../employee-service
+docker build -t piomin/employee:1.1 .
+
+cd ../organization-service
+docker build -t piomin/organization:1.1 .
+
+cd ../gateway-service
+docker build -t piomin/gateway:1.1 .
+
+#Giving cluster-admin role to default service account in default namespace. 
+kubectl create clusterrolebinding admin-spring-cloud --clusterrole=cluster-admin --serviceaccount=default:default
+
+
+kubectl create namespace a
+kubectl create namespace b
+kubectl create namespace c
+kubectl create namespace d
+
+
+kubectl create clusterrolebinding admin-a --clusterrole=cluster-admin --serviceaccount=a:default
+kubectl create clusterrolebinding admin-b --clusterrole=cluster-admin --serviceaccount=b:default
+kubectl create clusterrolebinding admin-c --clusterrole=cluster-admin --serviceaccount=c:default
+kubectl create clusterrolebinding admin-d --clusterrole=cluster-admin --serviceaccount=d:default  

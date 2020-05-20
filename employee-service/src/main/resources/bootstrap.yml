@@ -5,6 +5,7 @@ spring:
     kubernetes:
       secrets:
         enableApi: true
-      client:
-        masterUrl: 192.168.99.100:8443
-        trustCerts: true
+# The following masterUrl is not correct in my minikube. Other service's do not have this set.          
+#      client:
+#        masterUrl: 192.168.99.100:8443
+#        trustCerts: true
